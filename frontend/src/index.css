@@ -150,7 +150,7 @@ body,
 }
 
 .pb-safe {
-  padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
 }
 
 input[type='time'],

@@ -26,7 +26,7 @@ const tabs: Tab[] = [
 export function BottomNav() {
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 h-16 bg-bg-base/95 backdrop-blur border-t border-neon-cyan/10 flex items-center justify-around z-50"
+      className="fixed bottom-0 left-0 right-0 h-20 bg-bg-base/95 backdrop-blur border-t border-neon-cyan/10 flex items-stretch z-50"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
       {tabs.map((tab) => (
@@ -34,7 +34,7 @@ export function BottomNav() {
           key={tab.to}
           to={tab.to}
           end={tab.to === '/'}
-          className="relative flex flex-col items-center justify-center w-1/5 h-full"
+          className="relative flex flex-1 flex-col items-center justify-center gap-1 py-2 h-full"
         >
           {({ isActive }) => (
             <>
@@ -51,7 +51,7 @@ export function BottomNav() {
                 className={isActive ? 'text-neon-cyan' : 'text-text-secondary'}
               />
               <span
-                className={`mt-1 text-[10px] font-medium tracking-wide ${
+                className={`text-xs font-medium tracking-wide ${
                   isActive ? 'text-neon-cyan' : 'text-text-secondary'
                 }`}
                 style={isActive ? { textShadow: '0 0 8px #00ffff80' } : undefined}

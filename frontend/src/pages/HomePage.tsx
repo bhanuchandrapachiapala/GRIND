@@ -98,6 +98,7 @@ export function HomePage() {
       <TopBar
         title={titleText}
         subtitle={subtitleText}
+        subtitleAbove
         right={
           isYesterdayMode ? (
             <button
