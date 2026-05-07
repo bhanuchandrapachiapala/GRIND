@@ -1,11 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BarChart2, CheckSquare, Dumbbell, Home, Zap } from 'lucide-react';
+import {
+  BarChart2,
+  CheckSquare,
+  Dumbbell,
+  Home,
+  Zap,
+  type LucideIcon,
+} from 'lucide-react';
 
 type Tab = {
   label: string;
   to: string;
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  icon: LucideIcon;
 };
 
 const tabs: Tab[] = [

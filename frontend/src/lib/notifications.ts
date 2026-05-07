@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 // Local-only notification scheduling. Server-side Web Push would post to
 // `/api/push/...` here — see `<<SERVER_PUSH_HOOK>>` below for the wiring point.
 // <<SERVER_PUSH_HOOK>> e.g. await api.post('/api/push/subscribe', subscription)
@@ -53,7 +54,7 @@ export async function subscribeForPush(
   try {
     const sub = await reg.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(vapidKey),
+      applicationServerKey: urlBase64ToUint8Array(vapidKey).buffer as ArrayBuffer,
     });
     localStorage.setItem(SUBSCRIPTION_KEY, JSON.stringify(sub.toJSON()));
     // <<SERVER_PUSH_HOOK>> e.g. await api.post('/api/push/subscribe', sub.toJSON())
