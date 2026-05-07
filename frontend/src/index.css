@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme variables ──────────────────────────────────────────────────── */
+:root {
+  /* RGB triples used through tailwind's <alpha-value> placeholder. */
+  --color-bg-base: 10 15 30;
+  --color-bg-elevated: 17 24 39;
+  --color-text-primary: 240 244 255;
+  --color-text-secondary: 107 122 153;
+  --color-text-muted: 55 65 81;
+
+  /* Direct rgba/hex values (used in raw CSS, not via tailwind alpha). */
+  --color-bg-glass: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(0, 255, 255, 0.1);
+  --color-border: rgba(0, 255, 255, 0.1);
+  --color-border-hover: rgba(0, 255, 255, 0.3);
+  --color-row-bg: rgba(255, 255, 255, 0.02);
+  --color-row-border: rgba(255, 255, 255, 0.1);
+  --color-input-bg: rgba(255, 255, 255, 0.05);
+  --color-input-border: rgba(255, 255, 255, 0.1);
+
+  /* Neon palette as RGB triples (so tailwind /N opacity composes). */
+  --color-neon-cyan: 0 255 255;
+  --color-neon-purple: 168 85 247;
+  --color-neon-green: 34 197 94;
+  --color-neon-amber: 245 158 11;
+  --color-neon-red: 239 68 68;
+
+  /* Login background gradient stops */
+  --color-grad-1: #0a0f1e;
+  --color-grad-2: #0d2137;
+  --color-grad-3: #0a1628;
+  --color-grad-4: #070d1a;
+}
+
+.light {
+  --color-bg-base: 240 244 255;
+  --color-bg-elevated: 255 255 255;
+  --color-text-primary: 10 15 30;
+  --color-text-secondary: 75 85 99;
+  --color-text-muted: 156 163 175;
+
+  --color-bg-glass: rgba(0, 0, 0, 0.03);
+  --color-glass-border: rgba(0, 100, 200, 0.15);
+  --color-border: rgba(0, 100, 200, 0.15);
+  --color-border-hover: rgba(0, 100, 200, 0.35);
+  --color-row-bg: rgba(0, 0, 0, 0.02);
+  --color-row-border: rgba(0, 0, 0, 0.08);
+  --color-input-bg: rgba(0, 0, 0, 0.04);
+  --color-input-border: rgba(0, 0, 0, 0.08);
+
+  /* Slightly tone neons down on light */
+  --color-neon-cyan: 6 182 212;
+  --color-neon-purple: 147 51 234;
+
+  --color-grad-1: #f0f4ff;
+  --color-grad-2: #dbeafe;
+  --color-grad-3: #e0e7ff;
+  --color-grad-4: #ffffff;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background-color: rgb(var(--color-bg-base));
+  color: rgb(var(--color-text-primary));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overscroll-behavior: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Theme-aware utilities */
+.glass-bg {
+  background: var(--color-bg-glass);
+}
+.glass-border {
+  border-color: var(--color-glass-border);
+}
+.row-bg {
+  background: var(--color-row-bg);
+}
+.row-border {
+  border-color: var(--color-row-border);
+}
+.input-bg {
+  background: var(--color-input-bg);
+}
+.input-border {
+  border-color: var(--color-input-border);
+}
+
+.neon-text {
+  text-shadow:
+    0 0 10px rgb(var(--color-neon-cyan)),
+    0 0 20px rgb(var(--color-neon-cyan) / 0.25);
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgb(var(--color-neon-cyan) / 0.25);
+  }
+  50% {
+    box-shadow: 0 0 20px rgb(var(--color-neon-cyan) / 0.5);
+  }
+}
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.animated-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-grad-1),
+    var(--color-grad-2),
+    var(--color-grad-3),
+    var(--color-grad-4)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.pb-safe {
+  padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+}
+
+input[type='time'],
+input[type='number'],
+input[type='text'],
+input[type='password'],
+textarea {
+  color-scheme: light dark;
+}
